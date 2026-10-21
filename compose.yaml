@@ -1,0 +1,25 @@
+services:
+  app:
+    build: .
+    image: cs554-midterm-app:1.0
+    environment:
+      PORT: "8080"
+      SERVICE_NAME: cs554-midterm
+      MESSAGE: Hello from my midterm service!
+      NOT_READY_FILE: /tmp/midterm-not-ready
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
+

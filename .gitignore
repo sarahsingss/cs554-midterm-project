@@ -1,0 +1,12 @@
+node_modules/
+.env
+*.tar
+*.tar.gz
+*.log
+.DS_Store
+*.qcow2
+*.img
+*.iso
+*.vhdx
+*.pem
+id_ed25519*
